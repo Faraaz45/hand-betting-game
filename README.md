@@ -147,10 +147,3 @@ This project was built collaboratively with Claude (Anthropic's coding assistant
 
 - **Verification:** all design decisions were validated end-to-end by running the dev server and the test suite (47 passing tests at submission).
 
----
-
-## Project status
-
-- Tests: **47/47 passing**
-- Build: clean (`npm run build`)
-- See [docs/plans/2026-05-23-hand-betting-game-design.md](../docs/plans/2026-05-23-hand-betting-game-design.md) for the full phased design document.
