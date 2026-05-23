@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  input,
+  signal,
+} from '@angular/core';
 import { Tile } from '../../../core/models/tile.model';
 
 export type TileSize = 'lg' | 'md' | 'sm';
@@ -15,6 +22,8 @@ export type TileSize = 'lg' | 'md' | 'sm';
     '[class.tile--md]': 'size() === "md"',
     '[class.tile--sm]': 'size() === "sm"',
     '[class.tile--non-number]': 'tile().kind === "non-number"',
+    '[class.tile--pulse-up]': 'pulse() === "up"',
+    '[class.tile--pulse-down]': 'pulse() === "down"',
     '[attr.aria-label]': 'ariaLabel()',
   },
 })
@@ -34,4 +43,25 @@ export class TileComponent {
     const v = this.displayValue();
     return v !== null ? `${t.face} tile, value ${v}` : `${t.face} tile`;
   });
+
+  readonly pulse = signal<'up' | 'down' | null>(null);
+  private lastValue: number | null = null;
+  private pulseTimer: ReturnType<typeof setTimeout> | null = null;
+
+  constructor() {
+    effect(() => {
+      const v = this.displayValue();
+      if (v === null) return;
+      if (this.lastValue === null) {
+        this.lastValue = v;
+        return;
+      }
+      if (v !== this.lastValue) {
+        this.pulse.set(v > this.lastValue ? 'up' : 'down');
+        if (this.pulseTimer) clearTimeout(this.pulseTimer);
+        this.pulseTimer = setTimeout(() => this.pulse.set(null), 600);
+        this.lastValue = v;
+      }
+    });
+  }
 }

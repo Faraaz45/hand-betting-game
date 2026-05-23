@@ -25,7 +25,13 @@
 
     <section class="game__current" aria-label="Current hand">
       <h2 class="game__section-title">Current Hand</h2>
-      <app-hand [hand]="s.currentHand" size="lg" [tileValues]="s.tileValues" />
+      <div class="game__hand-stage">
+        @for (rev of [s.history.length]; track rev) {
+          <div class="game__hand-reveal">
+            <app-hand [hand]="s.currentHand" size="lg" [tileValues]="s.tileValues" />
+          </div>
+        }
+      </div>
       @let lr = latestResult();
       @if (lr) {
         <div class="game__result game__result--{{ lr.result }}" aria-live="polite">
