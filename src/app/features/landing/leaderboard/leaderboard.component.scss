@@ -1,11 +1,10 @@
 .leaderboard {
   width: 100%;
-  max-width: 480px;
-  margin: 0 auto;
   padding: 20px 24px;
   border-radius: 16px;
   background: var(--mat-sys-surface-container-low);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--mat-sys-outline-variant);
 }
 
 .leaderboard__header {
@@ -26,7 +25,8 @@
   text-align: center;
   color: var(--mat-sys-on-surface-variant);
   font-style: italic;
-  padding: 12px 0;
+  padding: 8px 0 4px;
+  font-size: 14px;
 }
 
 .leaderboard__list {
