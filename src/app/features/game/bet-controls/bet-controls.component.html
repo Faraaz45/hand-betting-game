@@ -1,0 +1,22 @@
+<div class="bet-controls">
+  <button
+    mat-flat-button
+    class="bet-controls__btn bet-controls__btn--lower"
+    [disabled]="disabled()"
+    (click)="emit('lower')"
+    aria-label="Bet lower (Left Arrow)"
+  >
+    <mat-icon>arrow_downward</mat-icon>
+    Bet Lower
+  </button>
+  <button
+    mat-flat-button
+    class="bet-controls__btn bet-controls__btn--higher"
+    [disabled]="disabled()"
+    (click)="emit('higher')"
+    aria-label="Bet higher (Right Arrow)"
+  >
+    Bet Higher
+    <mat-icon>arrow_upward</mat-icon>
+  </button>
+</div>

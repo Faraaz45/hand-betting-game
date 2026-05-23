@@ -1,0 +1,57 @@
+@let s = state();
+@if (s) {
+  <section class="game">
+    <header class="game__topbar">
+      <button mat-button (click)="onExit()" class="game__exit" aria-label="Exit (Esc)">
+        <mat-icon>arrow_back</mat-icon>
+        Exit
+      </button>
+      <div class="game__stats">
+        <div class="game__stat">
+          <span class="game__stat-label">Score</span>
+          <span class="game__stat-value">{{ s.score }}</span>
+        </div>
+        <div class="game__stat">
+          <span class="game__stat-label">Reshuffles</span>
+          <span class="game__stat-value">{{ s.reshuffleCount }} / {{ maxReshuffles }}</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="game__history" aria-label="Hand history">
+      <h2 class="game__section-title">History</h2>
+      <app-history-strip [entries]="s.history" [tileValues]="s.tileValues" />
+    </section>
+
+    <section class="game__current" aria-label="Current hand">
+      <h2 class="game__section-title">Current Hand</h2>
+      <app-hand [hand]="s.currentHand" size="lg" [tileValues]="s.tileValues" />
+      @let lr = latestResult();
+      @if (lr) {
+        <div class="game__result game__result--{{ lr.result }}" aria-live="polite">
+          @if (lr.result === 'win') {
+            <mat-icon>check_circle</mat-icon> WIN
+          } @else if (lr.result === 'lose') {
+            <mat-icon>cancel</mat-icon> LOSE
+          } @else {
+            <mat-icon>remove</mat-icon> PUSH
+          }
+        </div>
+      }
+    </section>
+
+    <section class="game__controls" aria-label="Place a bet">
+      <app-bet-controls (bet)="onBet($event)" />
+      <p class="game__hint">Will the next hand's total be higher or lower? (← / →)</p>
+    </section>
+
+    <footer class="game__footer">
+      <app-pile-counter
+        [drawCount]="s.drawPile.length"
+        [discardCount]="s.discardPile.length"
+        [reshuffleCount]="s.reshuffleCount"
+        [maxReshuffles]="maxReshuffles"
+      />
+    </footer>
+  </section>
+}

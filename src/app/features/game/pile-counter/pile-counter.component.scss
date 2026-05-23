@@ -1,0 +1,41 @@
+.pile-counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: var(--mat-sys-surface-container-low);
+  font-size: 14px;
+  color: var(--mat-sys-on-surface-variant);
+  flex-wrap: wrap;
+}
+
+.pile-counter__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pile-counter__divider {
+  width: 1px;
+  height: 16px;
+  background: var(--mat-sys-outline-variant);
+}
+
+.pile-counter__label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.pile-counter__value {
+  font-weight: 700;
+  color: var(--mat-sys-on-surface);
+}
+
+mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}

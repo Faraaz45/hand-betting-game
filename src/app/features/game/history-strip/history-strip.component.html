@@ -1,0 +1,19 @@
+@if (entries().length === 0) {
+  <div class="history-strip__empty">No hands yet — place your first bet.</div>
+} @else {
+  <div class="history-strip__scroll" role="list" aria-label="Previous hands">
+    @for (entry of recent(); track entry.timestamp) {
+      <div
+        class="history-strip__item history-strip__item--{{ entry.result }}"
+        role="listitem"
+        [attr.aria-label]="'Bet ' + entry.bet + ', ' + entry.result"
+      >
+        <div class="history-strip__meta">
+          <span class="history-strip__bet">{{ entry.bet === 'higher' ? '▲' : '▼' }}</span>
+          <span class="history-strip__result">{{ entry.result }}</span>
+        </div>
+        <app-hand [hand]="entry.hand" size="sm" [showTotal]="true" [tileValues]="tileValues()" />
+      </div>
+    }
+  </div>
+}

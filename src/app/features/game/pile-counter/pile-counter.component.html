@@ -1,0 +1,19 @@
+<div class="pile-counter">
+  <div class="pile-counter__item">
+    <mat-icon>style</mat-icon>
+    <span class="pile-counter__label">Draw</span>
+    <span class="pile-counter__value">{{ drawCount() }}</span>
+  </div>
+  <div class="pile-counter__divider"></div>
+  <div class="pile-counter__item">
+    <mat-icon>inbox</mat-icon>
+    <span class="pile-counter__label">Discard</span>
+    <span class="pile-counter__value">{{ discardCount() }}</span>
+  </div>
+  <div class="pile-counter__divider"></div>
+  <div class="pile-counter__item">
+    <mat-icon>refresh</mat-icon>
+    <span class="pile-counter__label">Reshuffles</span>
+    <span class="pile-counter__value">{{ reshuffleCount() }} / {{ maxReshuffles() }}</span>
+  </div>
+</div>
