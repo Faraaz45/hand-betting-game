@@ -1,5 +1,8 @@
 # Hand Betting Game
 
+**Live demo:** [hand-betting-game-mocha.vercel.app](https://hand-betting-game-mocha.vercel.app/)
+**Repository:** [github.com/Faraaz45/hand-betting-game](https://github.com/Faraaz45/hand-betting-game)
+
 A web-based "Hand Betting Game" built with Angular 21 and Angular Material. Players bet whether the next hand of Mahjong tiles will total higher or lower than the current hand. Non-number tiles (Dragons, Winds) scale dynamically with wins and losses, and the game ends when a tile value reaches 0 or 10, or when the draw pile is exhausted for the third time.
 
 > Built as a technical assessment. The codebase prioritises **extensibility** — game rules, deck composition, and bet logic are all swappable via dependency injection so new features can plug in without touching the engine.
