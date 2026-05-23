@@ -1,0 +1,127 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at top, rgba(21, 128, 61, 0.10), transparent 60%),
+    var(--mat-sys-surface);
+}
+
+.over {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 80px 16px;
+}
+
+.over__card {
+  background: var(--mat-sys-surface-container-lowest);
+  border-radius: 20px;
+  padding: 32px 28px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  animation: card-in 320ms ease-out;
+}
+
+.over__banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  margin-bottom: 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.over__banner--high {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #1f1f1f;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.32);
+}
+
+.over__title {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.over__reason {
+  margin: 8px 0 24px;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.over__score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 0 28px;
+}
+
+.over__score-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.over__score-value {
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 1;
+  margin-top: 4px;
+  background: linear-gradient(135deg, #15803d 0%, #1f1f1f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.over__form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  margin: 0 0 24px;
+}
+
+.over__name {
+  width: 100%;
+}
+
+.over__submit {
+  height: 44px;
+}
+
+.over__saved {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #15803d;
+  font-weight: 600;
+  margin: 0 0 20px;
+}
+
+.over__actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .over__card {
+    animation: none;
+  }
+}

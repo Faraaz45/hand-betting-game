@@ -1,46 +1,41 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { GameOverReason } from '../../core/models/game-state.model';
 import { GameStateService } from '../../core/services/game-state.service';
+import { LeaderboardService } from '../../core/services/leaderboard.service';
 
 @Component({
   selector: 'app-game-over',
   standalone: true,
-  imports: [MatButtonModule],
+  imports: [
+    FormsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-    @let s = state();
-    @if (s) {
-      <main class="over">
-        <h1>Game Over</h1>
-        <p class="over__score">Final score: <strong>{{ s.score }}</strong></p>
-        <p class="over__reason">{{ reasonLabel(s.gameOverReason) }}</p>
-        <div class="over__actions">
-          <button mat-flat-button color="primary" (click)="playAgain()">Play Again</button>
-          <button mat-button (click)="toLanding()">Back to Landing</button>
-        </div>
-      </main>
-    }
-  `,
-  styles: `
-    .over {
-      max-width: 560px;
-      margin: 0 auto;
-      padding: 80px 16px;
-      text-align: center;
-    }
-    h1 { font-size: 44px; margin: 0 0 12px; }
-    .over__score { font-size: 22px; margin: 0 0 4px; }
-    .over__reason { color: var(--mat-sys-on-surface-variant); margin: 0 0 24px; }
-    .over__actions { display: flex; gap: 12px; justify-content: center; }
-  `,
+  templateUrl: './game-over.component.html',
+  styleUrl: './game-over.component.scss',
 })
 export class GameOverComponent {
   private readonly gameState = inject(GameStateService);
+  private readonly leaderboard = inject(LeaderboardService);
   private readonly router = inject(Router);
-  readonly state = this.gameState.snapshot;
 
-  reasonLabel(reason: string | undefined): string {
+  readonly state = this.gameState.snapshot;
+  readonly score = computed(() => this.state()?.score ?? 0);
+  readonly qualifies = computed(() => this.leaderboard.qualifies(this.score()));
+
+  readonly name = signal('');
+  readonly submitted = signal(false);
+
+  reasonLabel(reason: GameOverReason | undefined): string {
     switch (reason) {
       case 'tile-zero':
         return 'A tile value dropped to 0.';
@@ -51,6 +46,12 @@ export class GameOverComponent {
       default:
         return '';
     }
+  }
+
+  submitScore(): void {
+    if (this.submitted()) return;
+    this.leaderboard.submit(this.name(), this.score());
+    this.submitted.set(true);
   }
 
   playAgain(): void {

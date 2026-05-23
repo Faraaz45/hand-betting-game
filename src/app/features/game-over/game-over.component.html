@@ -1,0 +1,51 @@
+@let s = state();
+@if (s) {
+  <main class="over">
+    <div class="over__card">
+      @if (qualifies() && !submitted()) {
+        <div class="over__banner over__banner--high">
+          <mat-icon>emoji_events</mat-icon>
+          New High Score!
+        </div>
+      }
+      <h1 class="over__title">Game Over</h1>
+      <p class="over__reason">{{ reasonLabel(s.gameOverReason) }}</p>
+      <div class="over__score" aria-live="polite">
+        <span class="over__score-label">Final Score</span>
+        <span class="over__score-value">{{ score() }}</span>
+      </div>
+
+      @if (qualifies() && !submitted()) {
+        <form class="over__form" (submit)="submitScore(); $event.preventDefault()">
+          <mat-form-field appearance="outline" class="over__name">
+            <mat-label>Your name</mat-label>
+            <input
+              matInput
+              [(ngModel)]="name"
+              name="name"
+              maxlength="16"
+              autocomplete="off"
+              placeholder="Anonymous"
+            />
+          </mat-form-field>
+          <button mat-flat-button color="primary" type="submit" class="over__submit">
+            Save Score
+          </button>
+        </form>
+      } @else if (submitted()) {
+        <p class="over__saved">
+          <mat-icon>check_circle</mat-icon>
+          Score saved.
+        </p>
+      }
+
+      <div class="over__actions">
+        <button mat-flat-button color="primary" (click)="playAgain()">
+          <mat-icon>replay</mat-icon>
+          Play Again
+        </button>
+        <button mat-button (click)="toLanding()">Back to Landing</button>
+      </div>
+    </div>
+  </main>
+}

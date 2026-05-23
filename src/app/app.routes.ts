@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { gameOverGuard } from './features/game-over/game-over.guard';
 
 export const routes: Routes = [
   {
@@ -13,6 +14,7 @@ export const routes: Routes = [
   },
   {
     path: 'game-over',
+    canActivate: [gameOverGuard],
     loadComponent: () =>
       import('./features/game-over/game-over.component').then((m) => m.GameOverComponent),
   },
