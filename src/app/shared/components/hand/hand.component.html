@@ -1,0 +1,12 @@
+<div class="hand">
+  <div class="hand__tiles">
+    @for (t of hand().tiles; track $index) {
+      <app-tile [tile]="t" [size]="size()" [value]="valueForTile(t)" />
+    }
+  </div>
+  @if (showTotal()) {
+    <div class="hand__total" [class.hand__total--sm]="size() === 'sm'">
+      Total <span class="hand__total-value">{{ hand().total }}</span>
+    </div>
+  }
+</div>

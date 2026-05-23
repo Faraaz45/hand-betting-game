@@ -1,0 +1,126 @@
+:host {
+  display: inline-flex;
+  position: relative;
+  background:
+    linear-gradient(180deg, #fefdf8 0%, #f4eedd 100%);
+  border: 1px solid #b8a878;
+  border-radius: 10px;
+  box-shadow:
+    inset 0 -3px 0 rgba(0, 0, 0, 0.12),
+    0 2px 4px rgba(0, 0, 0, 0.18);
+  color: #1f1f1f;
+  font-family: 'Segoe UI Symbol', 'Apple Color Emoji', 'Noto Sans Symbols 2', sans-serif;
+  user-select: none;
+  transition:
+    transform 200ms ease-out,
+    box-shadow 200ms ease-out;
+}
+
+:host(.tile--non-number) {
+  color: #b91c1c;
+}
+
+:host.tile--lg {
+  width: 84px;
+  height: 116px;
+  font-size: 56px;
+}
+
+:host.tile--md {
+  width: 56px;
+  height: 78px;
+  font-size: 38px;
+}
+
+:host.tile--sm {
+  width: 36px;
+  height: 50px;
+  font-size: 24px;
+}
+
+.tile__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.tile__glyph {
+  line-height: 1;
+}
+
+.tile__face {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  color: #54341a;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+:host.tile--sm .tile__face {
+  display: none;
+}
+
+.tile__value {
+  position: absolute;
+  bottom: 4px;
+  right: 6px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #54341a;
+}
+
+.tile__value--badge {
+  bottom: 4px;
+  right: 4px;
+  min-width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: #b91c1c;
+  color: #fff;
+  font-size: 11px;
+}
+
+:host.tile--lg .tile__value {
+  font-size: 16px;
+}
+:host.tile--lg .tile__value--badge {
+  min-width: 24px;
+  height: 24px;
+  font-size: 14px;
+  border-radius: 12px;
+}
+
+:host.tile--sm .tile__value {
+  font-size: 10px;
+}
+:host.tile--sm .tile__value--badge {
+  min-width: 14px;
+  height: 14px;
+  font-size: 9px;
+  border-radius: 7px;
+  bottom: 2px;
+  right: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :host:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      inset 0 -3px 0 rgba(0, 0, 0, 0.12),
+      0 6px 12px rgba(0, 0, 0, 0.22);
+  }
+}

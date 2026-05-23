@@ -1,0 +1,12 @@
+@let v = displayValue();
+<div class="tile__inner">
+  <span class="tile__glyph">{{ tile().glyph }}</span>
+  @if (tile().kind === 'non-number') {
+    <span class="tile__face">{{ tile().face }}</span>
+  }
+  @if (v !== null) {
+    <span class="tile__value" [class.tile__value--badge]="tile().kind === 'non-number'">
+      {{ v }}
+    </span>
+  }
+</div>
