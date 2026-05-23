@@ -1,0 +1,17 @@
+<main class="landing">
+  <div class="landing__hero">
+    <div class="landing__glyphs" aria-hidden="true">
+      <span>🀄</span><span>🀅</span><span>🀆</span><span>🀀</span>
+    </div>
+    <h1 class="landing__title">Hand Betting Game</h1>
+    <p class="landing__subtitle">
+      Mahjong tiles. Higher or lower. Don't let a tile hit 0 or 10.
+    </p>
+    <button mat-flat-button color="primary" class="landing__cta" (click)="newGame()">
+      <mat-icon>play_arrow</mat-icon>
+      New Game
+    </button>
+  </div>
+
+  <app-leaderboard />
+</main>

@@ -1,0 +1,20 @@
+<section class="leaderboard">
+  <header class="leaderboard__header">
+    <mat-icon>emoji_events</mat-icon>
+    <h2 class="leaderboard__title">Top Scores</h2>
+  </header>
+  @if (entries().length === 0) {
+    <p class="leaderboard__empty">No scores yet — be the first.</p>
+  } @else {
+    <ol class="leaderboard__list">
+      @for (entry of entries(); track $index; let i = $index) {
+        <li class="leaderboard__row" [style.animation-delay.ms]="i * 60">
+          <span class="leaderboard__rank">#{{ i + 1 }}</span>
+          <span class="leaderboard__name">{{ entry.name }}</span>
+          <span class="leaderboard__date">{{ formatDate(entry.date) }}</span>
+          <span class="leaderboard__score">{{ entry.score }}</span>
+        </li>
+      }
+    </ol>
+  }
+</section>
